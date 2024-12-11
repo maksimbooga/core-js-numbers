@@ -107,8 +107,12 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const mulVectors = x1 * x2 + y1 * y2;
+  const magnitude1 = Math.sqrt(x1 * x1 + y1 * y1);
+  const magnitude2 = Math.sqrt(x2 * x2 + y2 * y2);
+  const cos = mulVectors / (magnitude1 * magnitude2);
+  return Math.acos(cos);
 }
 
 /**
@@ -260,8 +264,21 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) {
+    return 0;
+  }
+  if (index === 1) {
+    return 1;
+  }
+  let a = 0;
+  let b = 1;
+  for (let i = 2; i <= index; i += 1) {
+    const next = a + b;
+    a = b;
+    b = next;
+  }
+  return b;
 }
 
 /**
@@ -294,8 +311,14 @@ function getSumToN(n) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let sum = 0;
+  let n = num;
+  while (n > 0) {
+    sum += n % 10;
+    n = Math.floor(n / 10);
+  }
+  return sum;
 }
 
 /**
@@ -584,8 +607,12 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  const randDec = Math.random();
+  const scaledVal = randDec * (max - min + 1);
+  const roundedVal = Math.floor(scaledVal);
+  const result = roundedVal + min;
+  return result;
 }
 
 /**
